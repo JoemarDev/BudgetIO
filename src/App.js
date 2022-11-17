@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, Routes, useNavigate } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Home from './routes/home/home.component';
+import Navigation from './routes/navigation/navigation.component';
+import Login from './routes/login/login.component';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentUser } from './store/user/user.selector';
+import { useEffect, useState } from 'react';
+import { checkUserSession } from './store/user/user.action';
+const App = () => {
+
+	const navigate = useNavigate();
+
+	const dispatch = useDispatch();
+
+	const currentUser = useSelector(selectCurrentUser);
+
+	useEffect(() => {
+		dispatch(checkUserSession());
+	},[]);
+
+	useEffect(() => {
+		navigate('/');
+	},[currentUser]);
+	
+	return (
+		<Routes>
+			{currentUser === null 
+				// Routes for un-login users
+				?<Route path='/*' element={<Login/>}/>
+				// Routes for login users
+				:<Route path='/' element={<Navigation/>}>
+					<Route index element={<Home/>}/>
+				</Route>
+			}
+		</Routes>
+	)
 }
 
 export default App;

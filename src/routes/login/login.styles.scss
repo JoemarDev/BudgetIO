@@ -1,0 +1,80 @@
+.login-container {
+    @apply 
+        container 
+        flex 
+        items-center 
+        justify-center 
+        mx-auto
+        h-screen;
+}
+
+.login-inner-container {
+    @apply 
+        flex 
+        w-full 
+        h-screen 
+        items-center;
+}
+
+.login-left-section {
+    @apply 
+        w-1/2 
+        h-4/5 
+        p-5  
+        rounded-md 
+        items-center 
+        flex 
+        overflow-hidden;
+
+
+    .left-section-image {
+        @apply 
+            h-full 
+            w-full 
+            object-contain;
+    }
+}
+
+.login-right-section {
+    @apply 
+        w-1/2  
+        p-5;
+}
+
+.login-input {
+    @apply 
+        px-5 
+        bg-theme-2 
+        w-full 
+        p-2 
+        py-3
+        text-sm 
+        rounded-md 
+        border-2 
+        border-theme-3  
+        focus:border-theme-5 
+        outline-0
+}
+
+.login-button-primary {
+    @apply 
+        bg-theme-5 
+        w-full 
+        p-2 
+        text-base 
+        rounded-md 
+        text-theme-1;
+}
+
+.login-button-secondary {
+    @apply 
+        bg-theme-3 
+        w-full 
+        p-2 
+        text-base 
+        rounded-md 
+        text-theme-5 
+        flex 
+        justify-center 
+        items-center;
+}
